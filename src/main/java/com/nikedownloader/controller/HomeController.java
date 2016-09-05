@@ -25,9 +25,9 @@ public class HomeController {
     }
 
     @PostMapping("/")
-    public String login(@RequestParam String login, @RequestParam char[] password,  Model model) throws Exception {
+    public String login(@RequestParam String email, @RequestParam char[] password,  Model model) throws Exception {
         logger.info("TEEEEEEEEEEST");
-        nikeDownloaderService.sendPost(login,password);
+        nikeDownloaderService.sendPost(email,password);
         Activities activities = nikeDownloaderService.getActivities();
         model.addAttribute("activities", activities.getData());
         return "activities";

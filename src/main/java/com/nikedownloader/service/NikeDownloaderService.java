@@ -71,7 +71,7 @@ public class NikeDownloaderService {
         con.setRequestProperty("User-Agent", USER_AGENT);
         con.setRequestProperty("Accept-Language", "pl-PL,pl;q=0.5");
 
-        String urlParameters = "username=" + login + "&password=" + password;
+        String urlParameters = "username=" + login + "&password=" + String.valueOf(password);
 
         // Send post request
         con.setDoOutput(true);
