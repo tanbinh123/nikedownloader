@@ -1,5 +1,6 @@
 package com.nikedownloader.controller;
 
+import com.nikedownloader.model.SearchComponent;
 import com.nikedownloader.service.NikeDownloaderService;
 import com.nikeplus.model.json.Activities;
 import org.slf4j.Logger;
@@ -34,6 +35,7 @@ public class HomeController {
         LocalDate dateNow = LocalDate.now();
         Activities activities = nikeDownloaderService.getActivities(dateNow.minusMonths(6L), dateNow, 1000);
         model.addAttribute("activities", activities.getData());
+        model.addAttribute("searchComponent", new SearchComponent(dateNow.minusMonths(6L), dateNow));
         return "activities";
     }
 }

@@ -14,14 +14,19 @@
             <div style="height: auto;" id="filter-panel" class="filter-panel collapse in">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form class="form-inline" role="form" th:action="@{/search}" method="post" th:object="${searchComponent}">
+                        <form class="form-inline" role="form" th:action="@{/search}" method="post"
+                              th:object="${searchComponent}">
                             <div class="form-group">
-                                <input name="dateFrom" class="form-control input-sm" size="16" type="text"
+                                <label for="startDate" class="sr-only">Start date</label>
+                                <input id="startDate" name="dateFrom" class="form-control input-sm" size="16"
+                                       type="text" th:field="*{startDate}"
                                        th:value="*{startDate}"/>
                                 <span class="add-on"><i class="icon-th"></i></span>
                             </div>
                             <div class="form-group">
-                                <input name="dateTo" class="form-control input-sm" size="16" type="text"
+                                <label for="endDate" class="sr-only">End date</label>
+                                <input id="endDate" name="dateTo" class="form-control input-sm" size="16" type="text"
+                                       th:field="*{endDate}"
                                        th:value="*{endDate}"/>
                                 <span class="add-on"><i class="icon-th"></i></span>
                             </div>
@@ -41,7 +46,7 @@
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary" data-toggle="collapse"
                                         data-target="#filter-panel">
-                                    <span class="glyphicon glyphicon-cog"></span> Search
+                                    <span class="glyphicon glyphicon-search"></span> Search
                                 </button>
                             </div>
                         </form>
@@ -71,13 +76,18 @@
                             th:with="someVariable=${T(com.nikedownloader.utils.StringUtil).xmlDateTimeToString(activity.startTime)}">
                         <td th:datetime="${someVariable}" th:text="${someVariable}"></td>
                     </th:block>
-                    <td th:text=" ${T(com.nikedownloader.utils.StringUtil).roundStringNumber(activity.metricSummary.distance) + ' km'}"></td>
+                    <td>
+                        <span th:text="${T(com.nikedownloader.utils.StringUtil).roundStringNumber(activity.metricSummary.distance) + ' km'}"></span>
+                        <i class="glyphicon glyphicon-map-marker" aria-hidden="true"
+                           th:if="${activity.isGpsActivity}"></i>
+                    </td>
                     <td th:text="${activity.metricSummary.duration}"></td>
                     <td th:text="${activity.deviceType}"></td>
                     <td>
                         <button class="btn btn-sm btn-success"
                                 th:href="@{|/activities/download?id=${activity.activityId}|}">
-                            <i class="glyphicon glyphicon-download" aria-hidden="true"></i>
+                            <i class="glyphicon glyphicon-download" aria-hidden="true"
+                               th:if="${activity.isGpsActivity}"></i>
                         </button>
                     </td>
 

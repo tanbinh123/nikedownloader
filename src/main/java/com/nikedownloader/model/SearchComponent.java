@@ -10,6 +10,14 @@ public class SearchComponent {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
+    public SearchComponent() {
+    }
+
+    public SearchComponent(LocalDate startDate, LocalDate endDate) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
     public LocalDate getStartDate() {
         return startDate;
     }

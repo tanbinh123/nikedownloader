@@ -8,7 +8,6 @@ import com.nikedownloader.converter.NikeJsonConverter;
 import com.nikeplus.model.json.Activities;
 import com.nikeplus.model.json.Activity;
 import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -28,12 +27,10 @@ public class NikeDownloaderService {
 
     private final String USER_AGENT = "Mozilla/5.0";
 
-    @Autowired
-    private UserSession userSession;
+    private String token;
 
     @Value("${nike.login.url}")
     private String nikeLoginUrl;
-
 
 
     public InputStream getActivityInputStream(String activityId) throws Exception {
@@ -103,13 +100,12 @@ public class NikeDownloaderService {
         String accessToken = jsonNode.get("access_token").textValue();
         long expiresIn = jsonNode.get("expires_in").longValue();
         expiresIn += (System.currentTimeMillis() / 1000);
-        userSession.setExpirationTime(expiresIn);
-        userSession.setToken(accessToken);
+        setToken(accessToken);
     }
 
     public Activities getActivities(LocalDate dateFrom, LocalDate dateTo, int count) throws Exception {
 
-        final String url = "https://api.nike.com/v1/me/sport/activities/RUNNING?access_token=" + userSession.getToken() + "&startDate=" + dateFrom.toString() + "&endDate=" + dateTo.toString() + "&count=" + count;
+        final String url = "https://api.nike.com/v1/me/sport/activities/RUNNING?access_token=" + getToken() + "&startDate=" + dateFrom.toString() + "&endDate=" + dateTo.toString() + "&count=" + count;
         StringBuffer response = senGET(url);
         ObjectMapper mapper = new ObjectMapper();
         Activities jsonObject = mapper.readValue(response.toString(), Activities.class);
@@ -118,7 +114,7 @@ public class NikeDownloaderService {
     }
 
     public Activity getActivity(String activityId) throws Exception {
-        String url = "https://api.nike.com/v1/me/sport/activities/" + activityId + "?access_token=" + userSession.getToken();
+        String url = "https://api.nike.com/v1/me/sport/activities/" + activityId + "?access_token=" + getToken();
 
         StringBuffer response = senGET(url);
         ObjectMapper mapper = new ObjectMapper();
@@ -155,5 +151,13 @@ public class NikeDownloaderService {
         //print result
         System.out.println(response.toString());
         return response;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
