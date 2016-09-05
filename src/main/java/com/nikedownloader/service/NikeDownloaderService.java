@@ -19,6 +19,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.*;
 import java.net.URL;
+import java.time.LocalDate;
 
 @Service
 public class NikeDownloaderService {
@@ -106,9 +107,9 @@ public class NikeDownloaderService {
         userSession.setToken(accessToken);
     }
 
-    public Activities getActivities() throws Exception {
+    public Activities getActivities(LocalDate dateFrom, LocalDate dateTo, int count) throws Exception {
 
-        final String url = "https://api.nike.com/v1/me/sport/activities/RUNNING?access_token=" + userSession.getToken() + "&startDate=2016-03-16&endDate=2016-08-15&count=999";
+        final String url = "https://api.nike.com/v1/me/sport/activities/RUNNING?access_token=" + userSession.getToken() + "&startDate=" + dateFrom.toString() + "&endDate=" + dateTo.toString() + "&count=" + count;
         StringBuffer response = senGET(url);
         ObjectMapper mapper = new ObjectMapper();
         Activities jsonObject = mapper.readValue(response.toString(), Activities.class);

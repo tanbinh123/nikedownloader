@@ -1,14 +1,14 @@
 package com.nikedownloader.controller;
 
+import com.nikedownloader.model.SearchComponent;
 import com.nikedownloader.service.NikeDownloaderService;
+import com.nikeplus.model.json.Activities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
@@ -32,4 +32,11 @@ public class ActivitiesController {
         org.apache.tomcat.util.http.fileupload.IOUtils.copy(activity, httpServletResponse.getOutputStream());
     }
 
+    @PostMapping("/search")
+    public String searchActivities(@ModelAttribute SearchComponent searchComponent,  Model model) throws Exception {
+        logger.info("TEEEEEEEEEEST222");
+        Activities activities = nikeDownloaderService.getActivities(searchComponent.getStartDate(), searchComponent.getEndDate(), 1000);
+        model.addAttribute("activities", activities.getData());
+        return "activities";
+    }
 }
