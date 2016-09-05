@@ -1,0 +1,28 @@
+{
+    "id": "https://api.nike.com/v1/schemas/Activities.json",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "required": ["data"],
+    "type": "object",
+    "properties": {
+        "data": {
+            "description":"The activity records returned in the list will not include the metrics object",
+            "type": "array",
+            "items": {
+                "$ref": "https://api.nike.com/v1/schemas/Activity.json"
+            }
+        },
+        "paging": {
+            "description": "This is the pagination information.This is an optional section.The next and previous sections are also optional",
+            "type": "object",
+            "properties": {
+                "next": {
+                    "type": ["string", "null"]
+                },
+                "previous": {
+                    "type": ["string", "null"]
+                }
+            }
+        }
+    }
+
+}

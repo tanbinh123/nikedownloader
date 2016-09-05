@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "type": "object",
+    "id": "https://api.nike.com/v1/schemas/Activity.json",
+    "required": ["activityId", "deviceType", "startTime"],
+    "properties": {
+        "links": {
+            "$ref": "https://api.nike.com/v1/schemas/Links.json"
+        },
+        "activityId": {
+            "type": "string"
+        },
+        "deviceType": {
+            "type": "string"
+        },
+        "startTime": {
+            "type": "string"
+        },
+        "activityTimeZone": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "$ref": "https://api.nike.com/v1/schemas/Tag.json"
+            }
+        },
+        "metricSummary": {
+            "$ref": "https://api.nike.com/v1/schemas/MetricSummary.json"
+        },
+        "activityType": {
+            "$ref": "https://api.nike.com/v1/schemas/ActivityType.json"
+        },
+        "metrics": {
+            "type": "array",
+            "items": {
+                "$ref": "https://api.nike.com/v1/schemas/Metric.json"
+            }
+        },
+        "isGpsActivity" : {
+            "type":"boolean"
+
+        }
+    }
+}

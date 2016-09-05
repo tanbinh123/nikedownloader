@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <link href="../static/bootstrap.min.css" th:href="@{/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+    <link href="../static/app.css" th:href="@{/app.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div style="height: auto;" id="filter-panel" class="filter-panel collapse in">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
+                                <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                                    <input class="span2" size="16" type="text" value="12-02-2012"/>
+                                    <span class="add-on"><i class="icon-th"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="filter-col" style="margin-right:0;" for="pref-perpage">Rows per
+                                    page:</label>
+                                <select id="pref-perpage" class="form-control">
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <!-- form group [rows] -->
+                            <div class="form-group">
+                                <label class="filter-col" style="margin-right:0;" for="pref-search">Search:</label>
+                                <input class="form-control input-sm" id="pref-search" type="text"/>
+                            </div>
+                            <!-- form group [search] -->
+                            <div class="form-group">
+                                <label class="filter-col" style="margin-right:0;" for="pref-orderby">Order by:</label>
+                                <select id="pref-orderby" class="form-control">
+                                    <option>Descendent</option>
+                                </select>
+                            </div>
+                            <!-- form group [order by] -->
+                            <div class="form-group">
+                                <div class="checkbox" style="margin-left:10px; margin-right:10px;">
+                                    <label><input type="checkbox"/> Ingested</label>
+                                </div>
+                                <div class="checkbox" style="margin-left:10px; margin-right:10px;">
+                                    <label><input type="checkbox"/> Automated</label>
+                                </div>
+                                <button type="submit" class="btn btn-default filter-col">
+                                    <span class="glyphicon glyphicon-record"></span> Save Settings
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filter-panel">
+                <span class="glyphicon glyphicon-cog"></span> Advanced Search
+            </button>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-striped">
+
+                <tr>
+                    <th>No</th>
+                    <th>Run date</th>
+                    <th>Distance</th>
+                    <th>Device</th>
+                    <th></th>
+                </tr>
+                <tr th:each="activity : ${activities}">
+                    <td th:text="${activityStat.count}"></td>
+                    <th:block
+                            th:with="someVariable=${T(com.nikedownloader.utils.StringUtil).xmlDateTimeToString(activity.startTime)}">
+                        <td th:datetime="${someVariable}" th:text="${someVariable}"></td>
+                    </th:block>
+                    <td th:text=" ${T(com.nikedownloader.utils.StringUtil).roundStringNumber(activity.metricSummary.distance) + ' km'}"></td>
+                    <td th:text="${activity.deviceType}"></td>
+                    <td><a th:href="@{|/activities/download?id=${activity.activityId}|}">Download</a></td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
