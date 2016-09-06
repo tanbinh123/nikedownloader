@@ -4,23 +4,26 @@
     <meta charset="UTF-8"/>
     <title></title>
     <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
-    <link href="../static/css/datepicker.css.css" th:href="@{/css/datepicker.css}" rel="stylesheet" media="screen"/>
+    <link href="../static/css/datepicker.css" th:href="@{/css/datepicker.css}" rel="stylesheet" media="screen"/>
     <link href="../static/css/app.css" th:href="@{/css/app.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
 <div class="container">
 
-    <div class="alert alert-warning alert-dismissible fade in" role="alert" th:if="${exception != null}" data-dismiss="alert">
+    <div class="alert alert-warning alert-dismissible fade in" role="alert" th:if="${exception != null}">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <strong>Warning!</strong> <span th:text="${exception.message}">Something went wrong.</span>
     </div>
 
-    <form class="form-signin" th:action="@{/}" method="post">
+    <form class="form-signin centered" th:action="@{/}" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input name="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""
+        <input name="email" id="inputEmail" class="form-control" placeholder="Nike+ login" required="" autofocus=""
                type="email"/>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input name="password" id="inputPassword" class="form-control" placeholder="Password" required=""
+        <input name="password" id="inputPassword" class="form-control" placeholder="Nike+ password" required=""
                type="password"/>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
@@ -29,8 +32,9 @@
 </div>
 
 <div th:replace="fragments/footer :: footer"></div>
-<script href="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}" type="javascript"/>
-<script href="../static/js/bootstrap-datepicker.js" th:href="@{/js/bootstrap-datepicker.js}" type="javascript"/>
-<script href="../static/js/functions.js" th:href="@{/js/functions.js}" type="javascript"/>
+<script src="https://code.jquery.com/jquery-3.1.0.slim.min.js" integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8=" crossorigin="anonymous"></script>
+<script src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+<script src="../static/js/bootstrap-datepicker.js" th:src="@{/js/bootstrap-datepicker.js}"></script>
+<script src="../static/js/functions.js" th:src="@{/js/functions.js}"></script>
 </body>
 </html>
