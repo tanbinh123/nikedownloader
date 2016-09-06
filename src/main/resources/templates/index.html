@@ -10,20 +10,19 @@
 <body>
 <div class="container">
 
+    <div class="alert alert-warning alert-dismissible fade in" role="alert" th:if="${exception != null}" data-dismiss="alert">
+        <strong>Warning!</strong> <span th:text="${exception.message}">Something went wrong.</span>
+    </div>
+
     <form class="form-signin" th:action="@{/}" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input name="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email"
-              />
+        <input name="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""
+               type="email"/>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input name="password" id="inputPassword" class="form-control" placeholder="Password" required="" type="password"
-               />
+        <input name="password" id="inputPassword" class="form-control" placeholder="Password" required=""
+               type="password"/>
 
-        <div class="checkbox">
-            <label>
-                <input value="remember-me" type="checkbox"/> Remember me
-            </label>
-        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 
