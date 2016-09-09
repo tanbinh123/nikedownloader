@@ -84,10 +84,9 @@
                     <td th:text="${activity.metricSummary.duration}"></td>
                     <td th:text="${activity.deviceType}"></td>
                     <td>
-                        <button class="btn btn-sm btn-success"
-                                th:href="@{|/activities/download?id=${activity.activityId}|}">
-                            <i class="glyphicon glyphicon-download" aria-hidden="true"></i>
-                        </button>
+                        <a class="btn btn-sm btn-success" th:href="@{|/activities/download?id=${activity.activityId}|}">
+                            <i class="glyphicon glyphicon-save-file" aria-hidden="true"></i> TCX
+                        </a>
                     </td>
 
                 </tr>

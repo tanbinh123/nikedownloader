@@ -1,8 +1,8 @@
 package com.nikedownloader.controller;
 
 import com.nikedownloader.model.SearchComponent;
+import com.nikedownloader.model.json.Activities;
 import com.nikedownloader.service.NikeDownloaderService;
-import com.nikeplus.model.json.Activities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

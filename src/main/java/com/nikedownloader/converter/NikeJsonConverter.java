@@ -1,10 +1,10 @@
 package com.nikedownloader.converter;
 
-import com.garmin.model.tcx.*;
-import com.nikeplus.model.json.Activities;
-import com.nikeplus.model.json.Activity;
-import com.nikeplus.model.json.Datum;
-import com.nikeplus.model.json.MetricSummary;
+import com.nikedownloader.model.json.Activities;
+import com.nikedownloader.model.json.Activity;
+import com.nikedownloader.model.json.Datum;
+import com.nikedownloader.model.json.MetricSummary;
+import com.nikedownloader.model.tcx.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

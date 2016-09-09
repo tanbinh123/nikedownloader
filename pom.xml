@@ -70,8 +70,6 @@
     </dependencies>
 
     <build>
-
-
         <pluginManagement>
             <plugins>
                 <!--
@@ -97,7 +95,7 @@
             </plugin>
 
             <!-- Json Schema to POJO -->
-            <plugin>
+<!--            <plugin>
                 <groupId>org.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
                 <version>0.4.24</version>
@@ -113,10 +111,10 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
             <!-- TCX Schema to Java classes -->
-            <plugin>
+         <!--   <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
                 <version>${jaxb.version}</version>
@@ -129,13 +127,13 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <!-- The package of your generated sources -->
+                    &lt;!&ndash; The package of your generated sources &ndash;&gt;
                     <packageName>com.garmin.model.tcx</packageName>
                     <sources>
                         <source>${basedir}/src/main/resources/schema/TrainingCenterDatabasev2.xsd</source>
                     </sources>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 
