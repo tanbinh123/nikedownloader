@@ -114,7 +114,7 @@
             </plugin>-->
 
             <!-- TCX Schema to Java classes -->
-         <!--   <plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
                 <version>${jaxb.version}</version>
@@ -127,13 +127,13 @@
                     </execution>
                 </executions>
                 <configuration>
-                    &lt;!&ndash; The package of your generated sources &ndash;&gt;
+                    <!-- The package of your generated sources -->
                     <packageName>com.garmin.model.tcx</packageName>
                     <sources>
                         <source>${basedir}/src/main/resources/schema/TrainingCenterDatabasev2.xsd</source>
                     </sources>
                 </configuration>
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
 

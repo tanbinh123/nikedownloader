@@ -2,11 +2,11 @@ package com.nikedownloader.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.garmin.model.tcx.ObjectFactory;
+import com.garmin.model.tcx.TrainingCenterDatabaseT;
 import com.nikedownloader.converter.NikeJsonConverter;
 import com.nikedownloader.model.json.Activities;
 import com.nikedownloader.model.json.Activity;
-import com.nikedownloader.model.tcx.ObjectFactory;
-import com.nikedownloader.model.tcx.TrainingCenterDatabaseT;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
